@@ -6,3 +6,6 @@ body{
 #welcome{
   background-image: url('pictures/nyse.jpg');
 }
+.hidden{
+  display: none;
+}
