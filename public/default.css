@@ -1,0 +1,8 @@
+body{
+  height: 500px;
+  background: -webkit-linear-gradient(#33ff00, #ffffff);
+  background-repeat: no-repeat;
+}
+#welcome{
+  background-image: url('pictures/nyse.jpg');
+}
