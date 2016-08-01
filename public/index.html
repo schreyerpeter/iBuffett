@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="default.css" media="screen" title="no title" charset="utf-8">
+</style>
 </head>
 <body ng-app='stocks'>
-  <div class="container">
+  <div class="container" id='container'>
     <div id='welcome' class="">
     </div>
     <div id='main' align='center' class="">
@@ -48,8 +49,6 @@
               </tr>
             </tbody>
           </table>
-          <canvas id="canvas" width="960" height="500"></canvas>
-
         </div>
       </div>
     </div>
@@ -59,7 +58,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" charset="utf-8"></script>
   <script src="default.js" charset="utf-8"></script>
   <script src="app.js" charset="utf-8"></script>
-            <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="stocks/stocks.controller.js" charset="utf-8"></script>
 </body>
 </html>
