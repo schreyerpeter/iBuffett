@@ -8,6 +8,7 @@ function stocks($http, $interval){
   vm.search = function(symbol){
     var data = {};
     data.symbol = symbol;
+    if(symbol.length>0){
     var request = $http.post('http://localhost:8080/search', data);
     request.then(function(datum){
       if (datum.data.query.results.quote.Name != null){
@@ -18,6 +19,8 @@ function stocks($http, $interval){
         vm.changePercent = datum.data.query.results.quote.PercentChange;
         vm.change = datum.data.query.results.quote.Change;
         vm.previous = datum.data.query.results.quote.PreviousClose;
+        vm.volume = datum.data.query.results.quote.Volume;
+        vm.range = datum.data.query.results.quote.DaysRange;
 
         var graph = d3.selectAll('svg');
         graph.remove();
@@ -35,7 +38,7 @@ function stocks($http, $interval){
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); });
 
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("#chart").append("svg:svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -89,8 +92,15 @@ function stocks($http, $interval){
         vm.open = '';
         vm.changePercent = '';
         vm.change = '';
+        vm.previous = '';
+        vm.volume = '';
+        vm.range = '';
+
+        var graph = d3.selectAll('svg');
+        graph.remove();
       }
     })
+  }
   }
 
   // var getData = function(){
