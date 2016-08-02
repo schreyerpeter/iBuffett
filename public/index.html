@@ -6,16 +6,25 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="default.css" media="screen" title="no title" charset="utf-8">
+  <link href='https://fonts.googleapis.com/css?family=Lusitana:400,700' rel='stylesheet' type='text/css'>
 </style>
 </head>
 <body ng-app='stocks'>
-  <div class="container" id='container'>
-    <div id='welcome' class="">
+  <div align='center' class="" id='intro'>
+    <div class="start-box">
+      <h1>Welcome to iBuffett</h1>
+      <h4>Your source of reliable stock updates and historical data</h4>
+      <button id='start' type="button" name="button" class="btn btn-primary">LET'S GET $TARTED</button>
     </div>
-    <div id='main' align='center' class="">
+  </div>
+  <div class="background-image"></div>
+  <div class="container hidden" id='container'>
+    <div id='welcome' align='center' class="">
       <h1>iBuffett</h1>
       <h3>"Scared money don't make no money."</h3>
       <h5>-Young Jeezy</h5>
+    </div>
+    <div id='main' align='center' class="">
       <div ng-controller='stockController as stock'>
         <form class="form-inline">
           <div class="form-group">
@@ -26,7 +35,7 @@
         </form>
         <div id='stock-box' class='hidden'>
           <h1>{{stock.price | currency}}</h1>
-          <h6>{{stock.change | currency}} ({{stock.changePercent}})</h6>
+          <h6 ng-class="{'text-danger': stock.change<0, 'text-success':stock.change>0}">{{stock.change | currency}} ({{stock.changePercent}})</h6>
           <table class="table table-condensed">
             <thead>
               <tr>
@@ -34,7 +43,7 @@
                 <th>Ticker</th>
                 <th>Previous Close</th>
                 <th>Opening Price</th>
-                <th>Day's Change</th>
+                <th>Volume</th>
                 <th>Day's Range</th>
               </tr>
             </thead>
@@ -44,11 +53,14 @@
                 <td>{{stock.symbol | uppercase}}</td>
                 <td>{{stock.previous | currency}}</td>
                 <td>{{stock.open | currency}}</td>
-                <td>{{stock.change | currency}} {{stock.changePercent}}</td>
-                <td>{{stock.previous | currency}}</td>
+                <td>{{stock.volume}}</td>
+                <td>${{stock.range}}</td>
               </tr>
             </tbody>
           </table>
+          <div id='chart'>
+
+          </div>
         </div>
       </div>
     </div>
