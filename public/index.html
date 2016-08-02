@@ -12,7 +12,7 @@
 <body ng-app='stocks'>
   <div align='center' class="" id='intro'>
     <div class="start-box">
-      <h1>Welcome to iBuffett</h1>
+      <h1>iBuffett</h1>
       <h4>Your source of reliable stock updates and historical data</h4>
       <button id='start' type="button" name="button" class="btn btn-primary">LET'S GET $TARTED</button>
     </div>
@@ -20,7 +20,7 @@
   <div class="background-image"></div>
   <div class="container hidden" id='container'>
     <div id='welcome' align='center' class="">
-      <h1>iBuffett</h1>
+      <h1><i class="fa fa-university" aria-hidden="true"></i>iBuffett<i class="fa fa-university" aria-hidden="true"></i></h1>
       <h3>"Scared money don't make no money."</h3>
       <h5>-Young Jeezy</h5>
     </div>
@@ -35,8 +35,8 @@
         </form>
         <div id='stock-box' class='hidden'>
           <h1>{{stock.price | currency}}</h1>
-          <h6 ng-class="{'text-danger': stock.change<0, 'text-success':stock.change>0}">{{stock.change | currency}} ({{stock.changePercent}})</h6>
-          <table class="table table-condensed">
+          <h3 ng-class="{'text-danger': stock.change<0, 'text-success':stock.change>0}">{{stock.change | currency}} ({{stock.changePercent}})</h6>
+          <table class="table table-condensed table-bordered table-success">
             <thead>
               <tr>
                 <th>Company</th>
@@ -58,9 +58,7 @@
               </tr>
             </tbody>
           </table>
-          <div id='chart'>
-
-          </div>
+          <div id='chart'></div>
         </div>
       </div>
     </div>
