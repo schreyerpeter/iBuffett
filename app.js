@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var bodyParser = require('body-parser');
-var d3 = require('d3');
 var bodyParser = require('body-parser');
+var unirest = require('unirest');
 
 app.use(bodyParser());
 app.use(express.static('public'));
@@ -17,6 +17,22 @@ app.get('/data', function(req,res){
       res.sendStatus(400);
     }
   })
+})
+
+app.post('/news', function(req, res){
+  var response = [];
+  unirest.get("https://webhose.io/search?token=62bf1eff-e651-4e43-a89a-ac500352d069&format=json&q="+req.body.name+"%20language%3A(english)")
+  .header("Accept", "text/plain")
+  .end(function (result) {
+    var body = result.body.posts;
+    body.forEach(function(item){
+      var stockNews = {};
+      stockNews.url = item.thread.url;
+      stockNews.title = item.thread.title;
+      response.push(stockNews);
+    })
+    res.send(response);
+  });
 })
 
 app.post('/search', function(req,res){

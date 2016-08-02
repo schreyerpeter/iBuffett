@@ -9,6 +9,7 @@ function stocks($http, $interval){
     var data = {};
     data.symbol = symbol;
     if(symbol.length>0){
+
     var request = $http.post('http://localhost:8080/search', data);
     request.then(function(datum){
       if (datum.data.query.results.quote.Name != null){
@@ -21,6 +22,14 @@ function stocks($http, $interval){
         vm.previous = datum.data.query.results.quote.PreviousClose;
         vm.volume = datum.data.query.results.quote.Volume;
         vm.range = datum.data.query.results.quote.DaysRange;
+        vm.ratio = datum.data.query.results.quote.PEGRatio;
+
+        var name = {};
+        name.name = vm.name;
+        var news = $http.post('http://localhost:8080/news', name);
+        news.then(function(datum){
+          console.log(datum);
+        })
 
         var graph = d3.selectAll('svg');
         graph.remove();
@@ -95,6 +104,7 @@ function stocks($http, $interval){
         vm.previous = '';
         vm.volume = '';
         vm.range = '';
+        vm.ratio = '';
 
         var graph = d3.selectAll('svg');
         graph.remove();
