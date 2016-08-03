@@ -36,39 +36,52 @@
         <div id='stock-box' class='hidden'>
           <h1>{{stock.price | currency}}</h1>
           <h3 ng-class="{'text-danger': stock.change<0, 'text-success':stock.change>0}">{{stock.change | currency}} ({{stock.changePercent}})</h6>
-          <table class="table table-condensed table-bordered table-success">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Ticker</th>
-                <th>Previous Close</th>
-                <th>Opening Price</th>
-                <th>Volume</th>
-                <th>Day's Range</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{stock.name}}</td>
-                <td>{{stock.symbol | uppercase}}</td>
-                <td>{{stock.previous | currency}}</td>
-                <td>{{stock.open | currency}}</td>
-                <td>{{stock.volume}}</td>
-                <td>${{stock.range}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div id='chart'></div>
+            <table class="table table-condensed table-bordered table-success">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Ticker</th>
+                  <th>Previous Close</th>
+                  <th>Opening Price</th>
+                  <th>Volume</th>
+                  <th>Day's Range</th>
+                  <th>P.E. Ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{stock.name}}</td>
+                  <td>{{stock.symbol | uppercase}}</td>
+                  <td>{{stock.previous | currency}}</td>
+                  <td>{{stock.open | currency}}</td>
+                  <td>{{stock.volume}}</td>
+                  <td>${{stock.range}}</td>
+                  <td>{{stock.ratio}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row">
+              <div class='col-xs-7' id='chart'></div>
+              <div class="col-xs-5" id='news'>
+                <div class="panel panel-primary">
+                  <div class="panel-heading">News Related to {{stock.name}}</div>
+                  <div align='left' class="panel-body">
+                    <p ng-repeat="item in stock.newsList | limitTo: 10">
+                      <a href="{{item.url}}">{{item.title}}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js" charset="utf-8"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" charset="utf-8"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" charset="utf-8"></script>
-  <script src="default.js" charset="utf-8"></script>
-  <script src="app.js" charset="utf-8"></script>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="stocks/stocks.controller.js" charset="utf-8"></script>
-</body>
-</html>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js" charset="utf-8"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" charset="utf-8"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" charset="utf-8"></script>
+      <script src="default.js" charset="utf-8"></script>
+      <script src="app.js" charset="utf-8"></script>
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script src="stocks/stocks.controller.js" charset="utf-8"></script>
+    </body>
+    </html>

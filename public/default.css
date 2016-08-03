@@ -47,8 +47,11 @@ body{
   color: white;
   font-family: 'Lusitana', serif;
 }
+#news{
+  height: 375px;
+}
 .table{
-  width: 60%;
+  width: 65%;
 }
 .hidden{
   display: none;

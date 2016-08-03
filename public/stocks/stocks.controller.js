@@ -28,14 +28,15 @@ function stocks($http, $interval){
         name.name = vm.name;
         var news = $http.post('http://localhost:8080/news', name);
         news.then(function(datum){
-          console.log(datum);
+          console.log(datum.data);
+          vm.newsList = datum.data;
         })
 
         var graph = d3.selectAll('svg');
         graph.remove();
 
         var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 720 - margin.left - margin.right,
+        width = 690 - margin.left - margin.right,
         height = 375 - margin.top - margin.bottom;
 
         var parseTime = d3.timeParse("%Y-%m-%d");

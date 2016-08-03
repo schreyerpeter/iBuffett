@@ -31,8 +31,9 @@ app.post('/news', function(req, res){
       stockNews.title = item.thread.title;
       response.push(stockNews);
     })
-    res.send(response);
+      res.send(response);
   });
+
 })
 
 app.post('/search', function(req,res){
