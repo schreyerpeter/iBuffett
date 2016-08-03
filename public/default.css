@@ -64,3 +64,14 @@ body{
 svg{
   background-color: white;
 }
+.nav-button{
+  margin-top: 20px;
+  margin-left: 85%;
+}
+#portfolio-body{
+  width: 100%;
+  color: white;
+  position: fixed;
+  z-index: 1;
+  font-family: 'Lusitana', serif;
+}

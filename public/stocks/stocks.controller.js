@@ -26,9 +26,8 @@ function stocks($http, $interval){
 
         var name = {};
         name.name = vm.name;
-        var news = $http.post('http://localhost:8080/news', name);
+        var news = $http.post('http://localhost:8080/search/news', name);
         news.then(function(datum){
-          console.log(datum.data);
           vm.newsList = datum.data;
         })
 
