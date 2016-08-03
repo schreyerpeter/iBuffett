@@ -5,7 +5,7 @@ describe('Testing REST API', function(){
   var Client = require('mongodb').MongoClient;
   var url = "mongodb://localhost:27017/example";
 
-  describe('CREATING', function(){
+  describe('CREATING', function(done){
     it('lets you search for a stock', function(done){
       request({
         url: "http://localhost:8080/search",
@@ -18,6 +18,27 @@ describe('Testing REST API', function(){
     it('requires a ticker', function(done){
       request({
         url: "http://localhost:8080/",
+        method: "POST"
+      }, function(error, response){
+        assert.equal(response.statusCode, 404);
+        done();
+      })
+    })
+  })
+
+  describe('CREATING', function(){
+    it('lets you search for news related to a stock', function(done){
+      request({
+        url: "http://localhost:8080/search/news",
+        method: "POST"
+      }, function(error, response){
+        assert.equal(response.statusCode, 200);
+        done();
+      })
+    })
+    it('requires a ticker', function(done){
+      request({
+        url: "http://localhost:8080/search/without/ticker",
         method: "POST"
       }, function(error, response){
         assert.equal(response.statusCode, 404);
