@@ -13,7 +13,7 @@ body{
 .start-box{
   width: 500px;
   transform: translateY(300px);
-  background-color: rgba(9,149,34,0.7);
+  background-color: rgba(255,0,0,0.7);
   border-radius: 20px;
   padding-bottom: 5px;
   font-family: 'Lusitana', serif;
