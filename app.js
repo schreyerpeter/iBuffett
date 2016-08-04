@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var bodyParser = require('body-parser');
 var unirest = require('unirest');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/ibuffett';
+
 app.use(bodyParser());
 app.use(express.static('public'));
 
@@ -47,5 +50,94 @@ app.post('/search', function(req,res){
   })
 })
 
+app.get('/portfolio', function(req,res){
+  MongoClient.connect(url, function(err, db){
+    if (err){
+      console.log(err);
+      db.close();
+      res.sendStatus(500);
+    } else {
+      var portfolio = db.collection('portfolio');
+      portfolio
+      .find({})
+      .toArray(function(error, documents){
+        db.close();
+        res.send(documents);
+      })
+    }
+  })
+});
 
+
+app.post('/portfolio/:symbol/:quantity', function(req,res){
+  MongoClient.connect(url, function(err, db){
+    if (err){
+      console.log(err);
+    }
+    else {
+      var portfolio = db.collection('portfolio');
+      portfolio
+      .insertOne({
+        symbol: req.params.symbol,
+        quantity: req.params.quantity
+      }, function(error, results){
+        if (error){
+          db.close();
+          res.send("Something went wrong");
+        } else {
+          db.close();
+          res.send("Successful post");
+        }
+      }
+    )
+  }
+})
+})
+
+app.delete('/portfolio/:symbol', function(req,res){
+  MongoClient.connect(url, function(err, db){
+    if (err){
+      console.log(error);
+    } else{
+      var portfolio = db.collection('portfolio');
+      portfolio
+      .deleteOne(
+        {symbol: req.params.symbol},
+        function(error, response){
+          if (error){
+            res.sendStatus(500);
+            db.close();
+          } else {
+            res.sendStatus(200);
+            db.close();
+          }
+        })
+      }
+    })
+  })
+
+  app.put("/portfolio/:symbol/:quantity", function(req, res){
+    MongoClient.connect(url, function(err, db){
+      if (err){
+        console.log(error);
+        db.close();
+      } else {
+        var portfolio = db.collection('portfolio');
+        portfolio
+        .updateOne(
+          {symbol: req.params.symbol},
+          {$set: {quantity: req.params.quantity}},
+          function(error, result){
+            if (error){
+              res.sendStatus(500);
+              db.close();
+            } else{
+              res.sendStatus(200);
+              db.close();
+            }
+          }
+        )
+      }
+    })
+  })
 app.listen(8080);
