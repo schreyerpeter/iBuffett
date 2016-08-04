@@ -1,0 +1,42 @@
+<div class="background-image">
+
+</div>
+<div align='center' id='portfolio-body' class='container'>
+  <a href="#home"><button id='main-button' ng-click='' type="button" class="btn btn-primary nav-button">Return Home <i class="fa fa-home" aria-hidden="true"></i></button></a>
+  <h1><i class="fa fa-university" aria-hidden="true"></i>iBuffett<i class="fa fa-university" aria-hidden="true"></i></h1>
+  <h3>"If stock market experts were so expert, they <br> would be buying stock, not selling advice."</h3>
+  <h5>-Norman Ralph Augustine</h5>
+  <div ng-controller='portfolioController as portfolio' class="">
+    <form class="form-inline">
+      <div class="form-group">
+        <label class="sr-only" for="ticker">Ticker</label>
+        <input ng-model='symbol' type="text" class="form-control" id="ticker" placeholder="Enter ticker">
+      </div>
+      <button id='portfolio-search' ng-click='portfolio.search(symbol)' type="button" class="btn btn-primary">Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </form>
+    <table id='portfolio-table' ng-show='portfolio.name' class="table table-condensed table-bordered table-success">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Ticker</th>
+          <th>Previous Close</th>
+          <th>Opening Price</th>
+          <th>Volume</th>
+          <th>Day's Range</th>
+          <th>PE Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{portfolio.name}}</td>
+          <td>{{portfolio.symbol | uppercase}}</td>
+          <td>{{portfolio.previous | currency}}</td>
+          <td>{{portfolio.open | currency}}</td>
+          <td>{{portfolio.volume}}</td>
+          <td>${{portfolio.range}}</td>
+          <td>{{portfolio.ratio}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

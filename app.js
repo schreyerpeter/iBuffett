@@ -19,7 +19,7 @@ app.get('/data', function(req,res){
   })
 })
 
-app.post('/news', function(req, res){
+app.post('/search/news', function(req, res){
   var response = [];
   unirest.get("https://webhose.io/search?token=62bf1eff-e651-4e43-a89a-ac500352d069&format=json&q="+req.body.name+"%20language%3A(english)")
   .header("Accept", "text/plain")

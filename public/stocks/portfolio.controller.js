@@ -2,14 +2,16 @@ var app = angular.module('stocks');
 
 app.controller('portfolioController', portfolio);
 
-function portfolio($http, $interval){
+portfolio.$inject = ['$http', '$interval', 'Stocks'];
+
+function portfolio($http, $interval, Stocks){
   vm = this;
   vm.search = function(symbol){
     var data = {};
     data.symbol = symbol;
     if(symbol.length>0){
 
-      var request = $http.post('http://localhost:8080/search', data);
+      var request = Stocks.get(data);
       request.then(function(datum){
         if (datum.data.query.results.quote.Name != null){
           vm.name = datum.data.query.results.quote.Name;

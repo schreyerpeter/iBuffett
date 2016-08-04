@@ -10,114 +10,13 @@
 </style>
 </head>
 <body ng-app='stocks'>
-  <div align='center' class="" id='intro'>
-    <div class="start-box">
-      <h1>iBuffett</h1>
-      <h4>Your source of reliable stock updates, news, and historical data</h4>
-      <button id='start' type="button" name="button" class="btn btn-primary">LET'S GET $TARTED</button>
-    </div>
+
+  <!-- <div class="background-image"></div> -->
+  <div ng-view>
+
   </div>
-  <div class="background-image"></div>
-  <div class="container hidden" id='container'>
-    <div id='welcome' align='center' class="">
-      <button id='portfolio-button' ng-click='' type="button" class="btn btn-primary nav-button">My Portfolio <i class="fa fa-line-chart" aria-hidden="true"></i></button>
-      <h1><i class="fa fa-university" aria-hidden="true"></i>iBuffett<i class="fa fa-university" aria-hidden="true"></i></h1>
-      <h3>"Scared money don't make no money."</h3>
-      <h5>-Young Jeezy</h5>
-    </div>
-    <div id='main' align='center' class="">
-      <div ng-controller='stockController as stock'>
-        <form class="form-inline">
-          <div class="form-group">
-            <label class="sr-only" for="ticker">Ticker</label>
-            <input ng-model='symbol' type="text" class="form-control" id="ticker" placeholder="Enter ticker">
-          </div>
-          <button id='search' ng-click='stock.search(symbol)' type="button" class="btn btn-primary">Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </form>
-        <div id='stock-box' class='hidden'>
-          <h1>{{stock.price | currency}}</h1>
-          <h3 ng-class="{'text-danger': stock.change<0, 'text-success':stock.change>0}">{{stock.change | currency}} ({{stock.changePercent}})</h6>
-            <table class="table table-condensed table-bordered table-success">
-              <thead>
-                <tr>
-                  <th>Company</th>
-                  <th>Ticker</th>
-                  <th>Previous Close</th>
-                  <th>Opening Price</th>
-                  <th>Volume</th>
-                  <th>Day's Range</th>
-                  <th>PE Ratio</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{stock.name}}</td>
-                  <td>{{stock.symbol | uppercase}}</td>
-                  <td>{{stock.previous | currency}}</td>
-                  <td>{{stock.open | currency}}</td>
-                  <td>{{stock.volume}}</td>
-                  <td>${{stock.range}}</td>
-                  <td>{{stock.ratio}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="row">
-              <div class='col-xs-7' id='chart'></div>
-              <div class="col-xs-5" id='news'>
-                <div class="panel panel-primary">
-                  <div class="panel-heading">News Related to {{stock.name}}</div>
-                  <div align='left' class="panel-body">
-                    <p ng-repeat="item in stock.newsList | limitTo: 10">
-                      <a href="{{item.url}}">{{item.title}}</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div align='center' id='portfolio-body' class='container hidden'>
-      <button id='main-button' ng-click='' type="button" class="btn btn-primary nav-button">Return Home <i class="fa fa-home" aria-hidden="true"></i></button>
-      <h1><i class="fa fa-university" aria-hidden="true"></i>iBuffett<i class="fa fa-university" aria-hidden="true"></i></h1>
-      <h3>"If stock market experts were so expert, they <br> would be buying stock, not selling advice."</h3>
-      <h5>-Norman Ralph Augustine</h5>
-      <div ng-controller='portfolioController as portfolio' class="">
-        <form class="form-inline">
-          <div class="form-group">
-            <label class="sr-only" for="ticker">Ticker</label>
-            <input ng-model='symbol' type="text" class="form-control" id="ticker" placeholder="Enter ticker">
-          </div>
-          <button id='portfolio-search' ng-click='portfolio.search(symbol)' type="button" class="btn btn-primary">Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </form>
-        <table class="table table-condensed table-bordered table-success">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Ticker</th>
-              <th>Previous Close</th>
-              <th>Opening Price</th>
-              <th>Volume</th>
-              <th>Day's Range</th>
-              <th>PE Ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{portfolio.name}}</td>
-              <td>{{portfolio.symbol | uppercase}}</td>
-              <td>{{portfolio.previous | currency}}</td>
-              <td>{{portfolio.open | currency}}</td>
-              <td>{{portfolio.volume}}</td>
-              <td>${{portfolio.range}}</td>
-              <td>{{portfolio.ratio}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" charset="utf-8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="default.js" charset="utf-8"></script>
@@ -125,5 +24,6 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="stocks/portfolio.controller.js" charset="utf-8"></script>
     <script src="stocks/stocks.controller.js" charset="utf-8"></script>
+    <script src="stocks/stocks.service.js" charset="utf-8"></script>
   </body>
   </html>

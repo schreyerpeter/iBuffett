@@ -2,7 +2,9 @@ var app = angular.module('stocks');
 
 app.controller('stockController', stocks);
 
-function stocks($http, $interval){
+stocks.$inject = ['$http', '$interval', 'Stocks'];
+
+function stocks($http, $interval, Stocks){
   vm = this;
 
   vm.search = function(symbol){
@@ -10,7 +12,7 @@ function stocks($http, $interval){
     data.symbol = symbol;
     if(symbol.length>0){
 
-    var request = $http.post('http://localhost:8080/search', data);
+    var request = Stocks.get(data);
     request.then(function(datum){
       if (datum.data.query.results.quote.Name != null){
         vm.name = datum.data.query.results.quote.Name;
