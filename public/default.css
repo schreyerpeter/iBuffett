@@ -75,6 +75,16 @@ svg{
   z-index: 1;
   font-family: 'Lusitana', serif;
 }
-#portfolio-table{
+#search-portfolio{
   margin-top: 20px;
+}
+#portfolio-table{
+  width: 90%;
+}
+#input-quantity{
+  width: 200px;
+}
+#portfolio-row{
+  margin-bottom: 20px;
+  color: black;
 }

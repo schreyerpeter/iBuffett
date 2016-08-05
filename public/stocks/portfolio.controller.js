@@ -6,6 +6,7 @@ portfolio.$inject = ['$http', '$interval', 'Stocks'];
 
 function portfolio($http, $interval, Stocks){
   vm = this;
+  vm.buyingPower = 10000;
   vm.search = function(symbol){
     var data = {};
     data.symbol = symbol;

@@ -48,9 +48,9 @@
               <div class="panel panel-primary">
                 <div class="panel-heading">News Related to {{stock.name}}</div>
                 <div align='left' class="panel-body">
-                  <p ng-repeat="item in stock.newsList | limitTo: 10">
-                    <a href="{{item.url}}">{{item.title}}</a>
-                  </p>
+                  <ul>
+                    <li ng-repeat="item in stock.newsList | limitTo: 10"><a href="{{item.url}}">&gt;{{item.title}}</a></li>
+                  </ul>
                 </div>
               </div>
             </div>
