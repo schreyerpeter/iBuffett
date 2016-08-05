@@ -2,8 +2,9 @@
   "name": "iBuffett",
   "version": "1.0.0",
   "description": "It's an app for investors to monitor stock prices, invest, and track portfolio performance.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,7 +12,7 @@
     "url": "git+https://github.com/schreyerpeter/iBuffett.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "pschreyer",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/schreyerpeter/iBuffett/issues"
@@ -29,5 +30,8 @@
     "request": "^2.74.0",
     "unirest": "^0.5.0",
     "webhose-nodejs": "^0.1.4"
-  }
+  },
+  "engines": {
+   "node": "6.2.1"
+ }
 }
