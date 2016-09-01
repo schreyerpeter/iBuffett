@@ -17,8 +17,8 @@ It's an app for investors to monitor stock prices, invest, and track portfolio p
 
 ##_Technologies:_
 ![alt tag](https://i.ytimg.com/vi/Jh0er2pRcq8/maxresdefault.jpg)
-
 ![alt tag](http://www.luminoso.com/images/company/partners/201511/webhose-logo.jpg)
+![alt tag](https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Logo_D3.svg/256px-Logo_D3.svg.png)
 
 
 ##_Dependencies and APIs:_
@@ -33,4 +33,4 @@ It's an app for investors to monitor stock prices, invest, and track portfolio p
 9. Yahoo Finance API
 10. Quandl Historical Stock Market Data API
 
-###Try it out at https://safe-garden-10999.herokuapp.com/
+###Try it out at http://safe-garden-10999.herokuapp.com
