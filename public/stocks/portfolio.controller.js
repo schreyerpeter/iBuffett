@@ -6,6 +6,13 @@ portfolio.$inject = ['$http', '$interval', 'Stocks'];
 
 function portfolio($http, $interval, Stocks){
   vm = this;
+
+  var fetch = $http.get('http://localhost:8080/portfolio', name);
+  fetch.then(function(datum){
+    vm.portfolioData = datum.data;
+    console.log(vm.portfolioData);
+  })
+
   vm.buyingPower = 10000;
   vm.search = function(symbol){
     var data = {};
