@@ -69,7 +69,7 @@ app.get('/portfolio', function(req,res){
 });
 
 
-app.post('/portfolio/:symbol/:quantity', function(req,res){
+app.post('/portfolio/:symbol', function(req,res){
   MongoClient.connect(url, function(err, db){
     if (err){
       console.log(err);
