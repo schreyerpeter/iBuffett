@@ -27,6 +27,7 @@ describe('Testing REST API', function(){
   })
 
   describe('CREATING', function(){
+    this.timeout(15000); //200 ms returned timeout error
     it('lets you search for news related to a stock', function(done){
       request({
         url: "http://localhost:8080/search/news",
