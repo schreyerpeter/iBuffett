@@ -18,8 +18,6 @@
                 <th>Ticker</th>
                 <th>Shares Owned</th>
                 <th>Average Price</th>
-                <th>Total Value</th>
-                <th>Net Gain/Loss</th>
               </tr>
           </thead>
           <tbody>
@@ -28,8 +26,6 @@
               <td>{{portfolio.ownedQuantity | uppercase}}</td>
               <td>{{portfolio.total / portfolio.ownedQuantity | currency}}</td>
               <td>{{portfolio.average * portfolio.ownedQuantity | currency}}</td>
-              <td>{{portfolio.open | currency}}</td>
-              <td>{{portfolio.volume}}</td>
             </tr>
           </tbody>
         </table>
@@ -82,8 +78,8 @@
               </div>
               <button type="submit" class="btn btn-primary">Place Market Order <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
             </form>
-            <h2>Buying Power: {{portfolio.buyingPower | currency}}</h2>
-            <h4>{{quantity}} shares of {{portfolio.name}} at {{portfolio.price | currency}} = {{quantity * portfolio.price | currency}}</h4>
+            <h4 ng-show="quantity">{{quantity}} shares of {{portfolio.name}} at {{portfolio.price | currency}} = {{quantity * portfolio.price | currency}}</h4>
+            <h2 ng-show="quantity" ng-class="{'text-danger': portfolio.buyingPower < 0}">Buying Power: {{portfolio.buyingPower - quantity * portfolio.price | currency}}</h2>
           </div>
         </div>
         </div>
