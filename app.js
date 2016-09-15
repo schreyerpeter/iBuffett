@@ -5,8 +5,16 @@ var bodyParser = require('body-parser');
 var bodyParser = require('body-parser');
 var unirest = require('unirest');
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/ibuffett';
+var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/ibuffett';
 
 app.use(bodyParser());
 app.use(express.static('public'));
