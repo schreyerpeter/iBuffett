@@ -14,6 +14,14 @@ function portfolio($http, $interval, Stocks){
   })
 
   vm.buyingPower = 10000;
+
+  vm.buy = function(quantity){
+    console.log(quantity);
+    console.log(vm.price);
+    vm.buyingPower -= quantity * vm.price;
+    console.log(vm.buyingPower);
+  };
+
   vm.search = function(symbol){
     var data = {};
     data.symbol = symbol;

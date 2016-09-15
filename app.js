@@ -139,6 +139,6 @@ app.delete('/portfolio/:symbol', function(req,res){
         )
       }
     })
-  })
+  });
   var PORT = process.env.PORT || 8080;
   app.listen(PORT);
