@@ -12,6 +12,8 @@ It's an app for investors to monitor stock prices, invest, and track portfolio p
 ![alt tag](https://github.com/schreyerpeter/iBuffett/blob/master/public/pictures/intro.png)
 *The home page:*
 ![alt tag](https://github.com/schreyerpeter/iBuffett/blob/master/public/pictures/news.png)
+*The portfolio page:*
+![alt tag](https://github.com/schreyerpeter/iBuffett/blob/master/public/pictures/portfolio.png)
 
 
 
