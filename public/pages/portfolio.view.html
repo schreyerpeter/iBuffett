@@ -10,22 +10,22 @@
         <div class="panel panel-primary">
           <div class="panel-heading">Your Portfolio</div>
           <div class="panel-body">
-            <button type="button" ng-click="portfolio.fetch" name="button"></button>
             <table id='portfolio-table' class="table table-condensed table-bordered table-success">
             <thead>
               <tr>
                 <th>Company</th>
                 <th>Ticker</th>
                 <th>Shares Owned</th>
-                <th>Average Price</th>
+                <!-- <th>Average Price</th> -->
               </tr>
           </thead>
           <tbody>
             <tr>
               <td>{{portfolio.ownedName}}</td>
+              <td>{{portfolio.ownedSymbol}}</td>
               <td>{{portfolio.ownedQuantity | uppercase}}</td>
-              <td>{{portfolio.total / portfolio.ownedQuantity | currency}}</td>
-              <td>{{portfolio.average * portfolio.ownedQuantity | currency}}</td>
+              <!-- <td>{{portfolio.total / portfolio.ownedQuantity | currency}}</td>
+              <td>{{portfolio.average * portfolio.ownedQuantity | currency}}</td> -->
             </tr>
           </tbody>
         </table>
@@ -76,7 +76,7 @@
                 <label for="input-shares" class="sr-only">Quantity of Shares</label>
                 <input type="text" ng-model ="quantity" class="form-control" id="input-quantity" placeholder="Quantity of {{portfolio.symbol | uppercase}} shares">
               </div>
-              <button ng-click="portfolio.buy(quantity)" type="submit" class="btn btn-primary">Place Market Order <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+              <button ng-click="portfolio.buy(quantity, portfolio.symbol, portfolio.name)" type="submit" class="btn btn-primary">Place Market Order <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
             </form>
             <h4 ng-show="quantity">{{quantity}} shares of {{portfolio.name}} at {{portfolio.price | currency}} = {{quantity * portfolio.price | currency}}</h4>
             <h2 ng-show="quantity">Buying Power: {{portfolio.buyingPower | currency}}</h2>

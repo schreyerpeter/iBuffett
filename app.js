@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
 });
 
 var MongoClient = require('mongodb').MongoClient;
-var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/ibuffett';
+var url = 'mongodb://localhost:27017/ibuffett' || process.env.MONGOLAB_URI;
 
 app.use(bodyParser());
 app.use(express.static('public'));
@@ -59,25 +59,27 @@ app.post('/search', function(req,res){
 })
 
 app.get('/portfolio', function(req,res){
+  console.log(req.body);
   MongoClient.connect(url, function(err, db){
     if (err){
       console.log(err);
-      db.close();
       res.sendStatus(500);
+      db.close();
     } else {
       var portfolio = db.collection('portfolio');
       portfolio
       .find({})
       .toArray(function(error, documents){
-        db.close();
         res.send(documents);
+        db.close();
       })
     }
   })
 });
 
 
-app.post('/portfolio/:symbol', function(req,res){
+app.post('/portfolio/:symbol/:quantity', function(req,res){
+  console.log(req.body);
   MongoClient.connect(url, function(err, db){
     if (err){
       console.log(err);
@@ -86,8 +88,9 @@ app.post('/portfolio/:symbol', function(req,res){
       var portfolio = db.collection('portfolio');
       portfolio
       .insertOne({
-        symbol: req.params.symbol,
-        quantity: req.params.quantity
+        symbol: req.body.symbol,
+        quantity: req.body.quantity,
+        name: req.body.name
       }, function(error, results){
         if (error){
           db.close();
@@ -102,15 +105,17 @@ app.post('/portfolio/:symbol', function(req,res){
 })
 })
 
-app.delete('/portfolio/:symbol', function(req,res){
+app.delete('/portfolio/:symbol/:quantity', function(req,res){
   MongoClient.connect(url, function(err, db){
     if (err){
       console.log(error);
     } else{
       var portfolio = db.collection('portfolio');
       portfolio
-      .deleteOne(
-        {symbol: req.params.symbol},
+      .deleteOne({
+        symbol: req.params.symbol,
+        quantity: req.params.quantity
+      },
         function(error, response){
           if (error){
             res.sendStatus(500);
