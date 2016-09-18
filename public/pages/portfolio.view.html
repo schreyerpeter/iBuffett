@@ -20,10 +20,10 @@
               </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{{portfolio.ownedName}}</td>
-              <td>{{portfolio.ownedSymbol}}</td>
-              <td>{{portfolio.ownedQuantity | uppercase}}</td>
+            <tr ng-repeat="item in portfolio.portfolioData">
+              <td>{{item.name}}</td>
+              <td>{{item.symbol | uppercase}}</td>
+              <td>{{item.quantity}}</td>
               <!-- <td>{{portfolio.total / portfolio.ownedQuantity | currency}}</td>
               <td>{{portfolio.average * portfolio.ownedQuantity | currency}}</td> -->
             </tr>
