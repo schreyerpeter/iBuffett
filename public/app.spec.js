@@ -50,14 +50,14 @@ describe('Testing REST API', function(){
   })
   // after(function(done){
   //   var Client = require('mongodb').MongoClient;
-  //   var url = 'mongodb://localhost:27017/example';
+  //   var url = 'mongodb://localhost:27017/ibuffett';
   //
   //   Client.connect(url, function(error, db){
   //     if (error){
   //       done();
   //       db.close();
   //     } else {
-  //       var books = db.collection('books');
+  //       var books = db.collection('portfolio');
   //       books.remove(
   //         {name: "add"},
   //         function(error, reponse){

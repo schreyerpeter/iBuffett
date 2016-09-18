@@ -9,17 +9,25 @@ function portfolio($http, $interval, Stocks){
 
   var fetch = $http.get('http://localhost:8080/portfolio', name);
   fetch.then(function(datum){
+    datum.data.forEach(function(item) {
+      vm.ownedQuantity = item.quantity;
+      vm.ownedSymbol = item.symbol;
+      vm.ownedName = item.name;
+    });
     vm.portfolioData = datum.data;
     console.log(vm.portfolioData);
   })
 
   vm.buyingPower = 10000;
 
-  vm.buy = function(quantity){
-    console.log(quantity);
-    console.log(vm.price);
-    vm.buyingPower -= quantity * vm.price;
-    console.log(vm.buyingPower);
+  vm.buy = function(quantity, symbol, name){
+    if (quantity>0) {
+      var info = {"quantity": quantity, "symbol": symbol, "name": name};
+      var purchasedStocks = $http.post('http://localhost:8080/portfolio/:symbol/:quantity', info);
+      purchasedStocks.then(console.log("Data return"));
+      vm.buyingPower -= quantity * vm.price;
+      console.log(vm.buyingPower);
+    }
   };
 
   vm.search = function(symbol){
