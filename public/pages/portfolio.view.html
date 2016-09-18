@@ -71,12 +71,12 @@
               </tbody>
             </table>
           <div ng-show="portfolio.symbol" class="row">
-            <form class="form-inline">
+            <form name="purchaseShares" class="form-inline">
               <div class="form-group">
                 <label for="input-shares" class="sr-only">Quantity of Shares</label>
-                <input type="text" ng-model ="quantity" class="form-control" id="input-quantity" placeholder="Quantity of {{portfolio.symbol | uppercase}} shares">
+                <input type="number" ng-model ="quantity" name="quantity" min='1' class="form-control" id="input-quantity" placeholder="Quantity of {{portfolio.symbol | uppercase}} shares" required>
               </div>
-              <button ng-click="portfolio.buy(quantity, portfolio.symbol, portfolio.name)" type="submit" class="btn btn-primary">Place Market Order <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+              <button ng-disable="{{quantity}}<1" ng-click="portfolio.buy(quantity, portfolio.symbol, portfolio.name)" type="submit" class="btn btn-primary">Place Market Order <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
             </form>
             <h4 ng-show="quantity">{{quantity}} shares of {{portfolio.name}} at {{portfolio.price | currency}} = {{quantity * portfolio.price | currency}}</h4>
             <h2 ng-show="quantity">Buying Power: {{portfolio.buyingPower | currency}}</h2>

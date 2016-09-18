@@ -21,14 +21,10 @@ function portfolio($http, $interval, Stocks){
   vm.buyingPower = 10000;
 
   vm.buy = function(quantity, symbol, name){
-    if ((quantity/1) !== NaN) {
+    if (quantity>0) {
       var info = {"quantity": quantity, "symbol": symbol, "name": name};
       var purchasedStocks = $http.post('http://localhost:8080/portfolio/:symbol/:quantity', info);
       purchasedStocks.then(console.log("Data return"));
-      console.log(quantity, symbol);
-      console.log(quantity/1);
-      console.log(quantity);
-      console.log(vm.price);
       vm.buyingPower -= quantity * vm.price;
       console.log(vm.buyingPower);
     }
