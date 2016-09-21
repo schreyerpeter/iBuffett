@@ -4,31 +4,30 @@ var request = require('request');
 describe('Testing REST API with Hooks', function(){
   var Client = require('mongodb').MongoClient;
   var url = "mongodb://localhost:27017/ibuffett";
-  before(function(done){
-    Client.connect(url, function(error, db){
-      if(error){
-        done();
-        db.close();
-      } else {
-        var portfolio = db.collection('portfolio');
-        portfolio.insertOne({
-          symbol: "TEST",
-          quantity: 100
-        }, function(error, results){
-          if (error){
-            done();
-            db.close();
-          } else {
-            done();
-            db.close();
-          }
-        })
-      }
-    })
-  })
+  // before(function(done){
+  //   Client.connect(url, function(error, db){
+  //     if(error){
+  //       done();
+  //       db.close();
+  //     } else {
+  //       var portfolio = db.collection('portfolio');
+  //       portfolio.insertOne({
+  //         buyingPower: 1337
+  //       }, function(error, results){
+  //         if (error){
+  //           done();
+  //           db.close();
+  //         } else {
+  //           done();
+  //           db.close();
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 
   describe('SEARCHING', function(){
-    this.timeout(3000);
+    this.timeout(10000);
     it('lets you search for a stock', function(done){
       request({
         url: "http://localhost:8080/search",
@@ -49,8 +48,8 @@ describe('Testing REST API with Hooks', function(){
     })
   })
 
-  describe('RETRIEVING STOCK DATA', function(done){
-    this.timeout(30000); //200 ms returned timeout error
+  describe('RETRIEVING STOCK DATA', function(){
+    this.timeout(5000);
     it('lets you search for news related to a stock', function(done){
       request({
         url: "http://localhost:8080/search/news",
@@ -164,12 +163,14 @@ describe('Testing REST API with Hooks', function(){
       } else {
         var portfolio = db.collection('portfolio');
         portfolio.remove(
-          {quantity: { $lt:1 }},
+          {},
           function(error, reponse){
             if (error){
+              console.log("Unsuccessful Before hook removal.");
               done();
               db.close();
             } else {
+              console.log("Successful Before hook removal.");
               done();
               db.close();
             }
