@@ -44,7 +44,6 @@ app.post('/search/news', function(req, res){
     })
       res.send(response);
   });
-
 })
 
 app.post('/search', function(req,res){
@@ -125,7 +124,7 @@ app.delete('/portfolio/:symbol/:quantity', function(req,res){
             db.close();
           }
         })
-      }
+       }
     })
   })
 
