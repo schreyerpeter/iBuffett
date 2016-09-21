@@ -28,7 +28,7 @@ describe('Testing REST API with Hooks', function(){
   })
 
   describe('SEARCHING', function(){
-    this.timeout(30000);
+    this.timeout(3000);
     it('lets you search for a stock', function(done){
       request({
         url: "http://localhost:8080/search",
@@ -164,7 +164,7 @@ describe('Testing REST API with Hooks', function(){
       } else {
         var portfolio = db.collection('portfolio');
         portfolio.remove(
-          {quantity: { $lt:1}},
+          {quantity: { $lt:1 }},
           function(error, reponse){
             if (error){
               done();
